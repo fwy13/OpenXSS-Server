@@ -3,7 +3,6 @@ const { sign } = pkg;
 
 export default async (ctx) => {
     const { code } = ctx.query;
-    console.log(ctx.query, "in line 6 zaloCallback.js");
     if (!code) throw new Error("Code not provided.");
     const data = new URLSearchParams({
         code: code,
@@ -20,6 +19,7 @@ export default async (ctx) => {
         },
         body: data,
     }).then((res) => res.json());
+    console.log({response}, 'in line 23')
     const { access_token } = response;
     const UserData = await fetch(
         "https://graph.zalo.me/v2.0/me?fields=id,name,picture",
@@ -33,6 +33,7 @@ export default async (ctx) => {
         .then((UserData) => {
             return UserData;
         });
+    console.log(UserData, 'in line 36')
     if (UserData.error === 0) {
         const token = await sign(
             {
