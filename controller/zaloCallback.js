@@ -3,6 +3,7 @@ const { sign } = pkg;
 
 export default async (ctx) => {
     const { code } = ctx.query;
+    console.log(ctx.query, "in line 6 zaloCallback.js");
     if (!code) throw new Error("Code not provided.");
     const data = new URLSearchParams({
         code: code,
@@ -48,6 +49,6 @@ export default async (ctx) => {
         ctx.cookies.set("token", token);
         ctx.redirect(process.env.CLIENT_REDIRECT_URL);
     } else {
-        ctx.body = "Error"
+        ctx.body = "Error";
     }
 };
