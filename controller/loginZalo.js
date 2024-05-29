@@ -1,4 +1,4 @@
-import generate_state_param from "../Utils/func_utils.js";
+import generate_state_param from "../utils/func_utils.js";
 import pkceChallenge from "pkce-challenge";
 
 
