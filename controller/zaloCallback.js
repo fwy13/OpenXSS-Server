@@ -19,7 +19,6 @@ export default async (ctx) => {
         },
         body: data,
     }).then((res) => res.json());
-    console.log({response}, 'in line 23')
     const { access_token } = response;
     const UserData = await fetch(
         "https://graph.zalo.me/v2.0/me?fields=id,name,picture",
@@ -33,7 +32,6 @@ export default async (ctx) => {
         .then((UserData) => {
             return UserData;
         });
-    console.log(UserData, 'in line 36')
     if (UserData.error === 0) {
         const token = await sign(
             {
