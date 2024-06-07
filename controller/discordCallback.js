@@ -5,7 +5,6 @@ const { sign } = pkg;
 
 export default async (ctx) => {
     if (!ctx.query.code) throw new Error("Code not provided.");
-
     const { code } = ctx.query;
     const data = new URLSearchParams({
         client_id: process.env.clientId,
@@ -14,7 +13,6 @@ export default async (ctx) => {
         code: code,
         redirect_uri: process.env.uri_callback_discord,
     });
-
     const headers = {
         "Content-Type": "application/x-www-form-urlencoded",
         "Accept-Encoding": "application/x-www-form-urlencoded",
@@ -39,7 +37,7 @@ export default async (ctx) => {
         expiresIn: "30d",
     });
 
-    const CheckUserExist = await User.findOne({ id: ids  }).exec();
+    const CheckUserExist = await User.findOne({ id: ids }).exec();
 
     if (!CheckUserExist) {
         const userData = new User({
@@ -49,7 +47,6 @@ export default async (ctx) => {
         });
         userData.save();
     }
-
     ctx.cookies.set("token", token);
     ctx.redirect(process.env.CLIENT_REDIRECT_URL);
 };

@@ -2,8 +2,13 @@ import pkg from "jsonwebtoken";
 const { sign } = pkg;
 
 export default async (ctx) => {
-    const { code } = ctx.query;
-    if (!code) throw new Error("Code not provided.");
+    const { code, error } = ctx.query;
+    if (!code) {
+        ctx.body = "Error"
+    }
+    if (error === "access_denied") {
+        ctx.body = "Please agree to continue."
+    }
     const data = new URLSearchParams({
         code: code,
         code_verifier: ctx.cookies.get("code-verify"),

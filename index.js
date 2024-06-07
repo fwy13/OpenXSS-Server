@@ -28,6 +28,6 @@ router.get("/user/discord", async (ctx) => {
 });
 
 app.listen(PORT, async () => {
-    await mongoose.connect(process.env.mongoose_url)
+    await mongoose.connect(process.env.mongodb_url_user);
     console.log(`Server running in http://localhost:${PORT}`);
 });
