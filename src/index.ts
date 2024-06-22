@@ -1,11 +1,10 @@
-import Koa from "koa";
+import Koa, { Context } from "koa";
 import cors from "@koa/cors";
 import bodyParser from "koa-bodyparser";
 import { config } from "dotenv";
 import mongoose from "mongoose";
+import router from "./routers";
 
-import router from "./router/router.js";
-import auth from "./middleware/auth.js";
 config();
 
 const app = new Koa();
@@ -17,17 +16,11 @@ app.use(
     })
 );
 
-router.use(auth);
 app.use(bodyParser());
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-
-router.get("/user/discord", async (ctx) => {
-    ctx.body = ctx.state.user;
-});
-
 app.listen(PORT, async () => {
-    await mongoose.connect(process.env.mongodb_url_user);
+    await mongoose.connect(process.env.mongodb_url ?? "");
     console.log(`Server running in http://localhost:${PORT}`);
 });

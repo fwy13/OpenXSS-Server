@@ -5,6 +5,7 @@ const User = new mongoose.Schema(
         id: String,
         name: String,
         avatar: String,
+        tokenLogin: String
     },
     { timestamps: true }
 );
