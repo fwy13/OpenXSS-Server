@@ -1,8 +1,6 @@
-import pkg from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 import User from "../models/modelUser";
 import { Context, Next } from "koa";
-
-const { verify } = pkg;
 
 type userData = {
     id: string;
@@ -20,10 +18,15 @@ export default async (ctx: Context, next: Next) => {
         const name = UserData.name;
         const id = UserData.id;
         const avatar = UserData.avatar;
- 
-        ctx.state.user = { name, id, avatar };
+
+        ctx.state.user = { error: false, name, id, avatar };
     } catch (error) {
-        ctx.state.user = undefined;
+        ctx.state.user = {
+            error: true,
+            name: null,
+            id: null,
+            avatar: null,
+        };
     }
     next();
 };

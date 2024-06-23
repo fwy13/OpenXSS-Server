@@ -1,8 +1,6 @@
-import pkg from "jsonwebtoken";
+import { sign } from "jsonwebtoken";
 import User from "../models/modelUser";
 import { Context } from "koa";
-
-const { sign } = pkg;
 
 type ResponseToken = {
     token_type: string;
@@ -55,12 +53,15 @@ export default async (ctx: Context) => {
         }
     ).then((res) => res.json());
 
-    const UserData: ResponseUser | any = await fetch("https://discord.com/api/users/@me", {
-        headers: {
-            Authorization: `${response.token_type} ${response.access_token}`,
-            ...headers,
-        },
-    }).then((res) => res.json());
+    const UserData: ResponseUser | any = await fetch(
+        "https://discord.com/api/users/@me",
+        {
+            headers: {
+                Authorization: `${response.token_type} ${response.access_token}`,
+                ...headers,
+            },
+        }
+    ).then((res) => res.json());
 
     const { id, global_name, username, avatar } = UserData;
 
@@ -74,7 +75,12 @@ export default async (ctx: Context) => {
         const userData = new User({
             id: id,
             name: global_name ? global_name : username,
-            avatar: avatar ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png` : global_name ? global_name : username,
+            avatar: avatar
+                ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png`
+                : global_name
+                ? global_name
+                : username,
+            tokenLogin: "",
         });
         userData.save();
     }

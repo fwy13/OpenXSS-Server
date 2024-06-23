@@ -1,0 +1,1 @@
+{"version":3,"file":"discordLogout.js","sourceRoot":"","sources":["../../src/controllers/discordLogout.ts"],"names":[],"mappings":";;AAEA,kBAAe,KAAK,EAAE,GAAY,EAAE,EAAE;IAClC,GAAG,CAAC,OAAO,CAAC,GAAG,CAAC,OAAO,EAAE,IAAI,CAAC,CAAC;IAC/B,GAAG,CAAC,QAAQ,CAAC,OAAO,CAAC,GAAG,CAAC,mBAAmB,IAAI,EAAE,CAAC,CAAC;AACxD,CAAC,CAAA"}

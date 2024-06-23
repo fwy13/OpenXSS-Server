@@ -1,0 +1,1 @@
+{"version":3,"file":"loginDiscord.js","sourceRoot":"","sources":["../../src/controllers/loginDiscord.ts"],"names":[],"mappings":";;AAEA,kBAAe,KAAK,EAAE,GAAY,EAAE,EAAE;IAClC,MAAM,GAAG,GAAG,sDAAsD,OAAO,CAAC,GAAG,CAAC,SAAS,iBAAiB,OAAO,CAAC,GAAG,CAAC,oBAAoB,oCAAoC,CAAC;IAC7K,GAAG,CAAC,QAAQ,CAAC,GAAG,CAAC,CAAC;AACtB,CAAC,CAAC"}
